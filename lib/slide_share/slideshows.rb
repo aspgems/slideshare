@@ -73,7 +73,7 @@ module SlideShare
     def find_slideshows_by_user(username, options = {})
       detailed = convert_to_number(options.delete(:detailed))
       options[:detailed] = detailed unless detailed.nil?
-      base.send :get, "/get_slideshows_by_user", options.merge(:username_for => name)
+      base.send :get, "/get_slideshows_by_user", options.merge(:username_for => username)
     end
     
     # Returns true if successful or raises an appropriate exception if not.
