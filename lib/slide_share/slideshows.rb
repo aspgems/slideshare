@@ -61,6 +61,20 @@ module SlideShare
       options[:detailed] = detailed unless detailed.nil?
       base.send :get, "/get_slideshow", options.merge(:slideshow_id => id)
     end
+
+    # Returns array of slideshow if successful or raises an appropriate
+    # exception if not. Takes the following options:
+    #
+    # * <tt>:username</tt> - SlideShare username of the user _making_ the request
+    # * <tt>:password</tt> - SlideShare password of the user _making_ the request
+    # * <tt>:detailed</tt> - Set to <tt>true</tt> to return additional, detailed information
+    #   about the slideshow (see the official API documentation here[http://www.slideshare.net/developers/documentation]
+    #   for more information). Default is <tt>false</tt>.
+    def find_slideshows_by_user(username, options = {})
+      detailed = convert_to_number(options.delete(:detailed))
+      options[:detailed] = detailed unless detailed.nil?
+      base.send :get, "/get_slideshows_by_user", options.merge(:username_for => name)
+    end
     
     # Returns true if successful or raises an appropriate exception if not.
     # Takes the following options:
